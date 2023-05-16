@@ -1,5 +1,6 @@
 # voicenote
 Voice-powered note taking with whispercpp/ChatGPT API.
+
 This script couples well with a Markdown renderer that supports auto-refresh, [here's what I use.](https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcjmikdlpkmbgfkaikojcbjk?hl=en)
 
 ## Usage
