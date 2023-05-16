@@ -14,3 +14,4 @@ This script couples well with a Markdown renderer that supports auto-refresh, [h
 - Add GUI
 - This might be a nice Obsidian plugin 
 - Audio recording and handling of messages could be done better
+- System prompt could be better
