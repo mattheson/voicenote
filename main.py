@@ -35,7 +35,7 @@ sample_rate = 16000  # This could change based on your device
 duration = 10  # Temporary duration
 
 # Initialize buffer and recording flag
-buffer = np.array([], dtype=np.int16)
+buffer = []
 recording = False
 
 # Define callback for the stream
@@ -44,7 +44,7 @@ def callback(indata, frames, time, status):
     if status:
         print(status)
     if recording:
-        buffer = np.append(buffer, indata)
+        buffer.extend(indata[:, 0])
 
 # Create stream
 stream = sd.InputStream(callback=callback, channels=1, dtype='int16', samplerate=sample_rate)
@@ -77,6 +77,9 @@ while True:
             # Stop recording
             recording = False
             print('Stopped recording')
+
+            # Convert buffer into numpy array
+            buffer = np.array(buffer, dtype=np.int16)
             
             # Transcribe the audio
             arr = buffer.astype(np.float32) / 32768.0
@@ -112,7 +115,7 @@ while True:
                 json.dump(messages, f, indent=4)
 
             # Clear the buffer
-            buffer = np.array([], dtype=np.int16)
+            buffer = []
         else:
             # Start recording
             print('Started recording')
