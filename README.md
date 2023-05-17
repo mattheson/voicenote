@@ -11,7 +11,9 @@ This script couples well with a Markdown renderer that supports auto-refresh, [h
 - Just run `python3 main.py`.
 
 ## Todo
+- Handle context better
+  - Right now the request is in this format: `[system prompt, latest file version, transcription]`
+  - There is probably a way better way of handling context
 - Add GUI
 - This might be a nice Obsidian plugin 
 - Audio recording and handling of messages could be done better
-- System prompt could be better

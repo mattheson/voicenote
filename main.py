@@ -65,7 +65,7 @@ else:
     messages = [
         {
             "role": "system",
-            "content": "You are a note-taking service. Your response will in Markdown. Add, remove and modify the content of the file based on the input from the user. The user is using a speech-to-text transcription. Do not refer to yourself in the first person and do not add follow-ups. Always respond with ONLY the markdown file and nothing else."
+            "content": "You are a note-taking program. Only respond in Markdown. The user is using a speech-to-text transcription. Do not communicate like a person. Notes can be added at the bottom if information is needed."
         }
     ]
 
@@ -92,10 +92,16 @@ while True:
                 "content": transcription
             })
 
+            # Construct a list of messages to send to the API
+            if len(messages) > 2:
+                api_messages = [messages[0], messages[-2], messages[-1]]
+            else:
+                api_messages = messages
+
             # Get response from ChatGPT
             response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
-                messages=messages,
+                messages=api_messages,
                 temperature=0,
             )
             response_content = response["choices"][0]["message"]["content"]
